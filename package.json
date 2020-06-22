@@ -1,6 +1,6 @@
 {
   "name": "ember-on-resize-modifier",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Modifier relying on a single ResizeObserver instance for better performance.",
   "keywords": [
     "ember-addon"
