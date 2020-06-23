@@ -65,7 +65,7 @@ module('Integration | Modifier | on-resize', function (hooks) {
   });
 
   test('setting element `display` to `none`', async function (assert) {
-    this.onResize = sinon.spy((...args) => console.log(...args)).named('onResize');
+    this.onResize = sinon.spy().named('onResize');
 
     await render(hbs`
       <div
