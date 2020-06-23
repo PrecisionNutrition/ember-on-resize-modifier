@@ -2783,7 +2783,7 @@ broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.1, broccoli-funnel@^2.0.2:
     symlink-or-copy "^1.0.0"
     walk-sync "^0.3.1"
 
-broccoli-funnel@^3.0.2:
+broccoli-funnel@^3.0.2, broccoli-funnel@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-3.0.3.tgz#26fd42632471f67a91f4770d1987118087219937"
   integrity sha512-LPzZ91BwStoHZXdXHQAJeYORl189OrRKM5NdIi86SDU9wZ4s/3lV1PRFOiobDT/jKM10voM7CDzfvicHbCYxAQ==
@@ -8626,11 +8626,12 @@ qunit-dom@^1.1.0:
     broccoli-funnel "^3.0.2"
     broccoli-merge-trees "^4.2.0"
 
-qunit-sinon-assertions@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/qunit-sinon-assertions/-/qunit-sinon-assertions-0.0.2.tgz#0498c41190a26240e3db588afd51c2bacf8bf237"
-  integrity sha512-NMaKGf94k9M6LwDZwDhB0TuBH3xffryZZGTZ0CjGBbou54yBr6kxR3V/uqJpXQ1quHdpQ4YaSq1f7mA/hPK4zA==
+qunit-sinon-assertions@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/qunit-sinon-assertions/-/qunit-sinon-assertions-0.0.3.tgz#747e278b168f11b6b3202909635e8f1d05428c45"
+  integrity sha512-zYS4dP6dzdeknQZ7qtrCXa/6EXEV1xpWU8uU979ypemhzCotJG/jn8r6/wVwBS+ljY3aSkxcGek2FabpyaYwXA==
   dependencies:
+    broccoli-funnel "^3.0.3"
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
 
