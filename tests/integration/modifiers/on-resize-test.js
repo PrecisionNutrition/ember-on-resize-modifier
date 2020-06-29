@@ -3,13 +3,7 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find, setupOnerror, resetOnerror } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { later } from '@ember/runloop';
-
-function timeout(ms = 50) {
-  return new Promise(resolve => {
-    later(resolve, ms);
-  });
-}
+import { delay, setSize, setStyle } from '../../utils';
 
 module('Integration | Modifier | on-resize', function (hooks) {
   setupRenderingTest(hooks);
@@ -28,7 +22,7 @@ module('Integration | Modifier | on-resize', function (hooks) {
     `);
 
     const element = find('[data-test]');
-    await timeout();
+    await delay();
 
     assert
       .spy(this.onResize)
@@ -38,8 +32,7 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 100, width: 100 }) })]);
 
     this.onResize.resetHistory();
-    element.style.width = '50px';
-    await timeout();
+    await setSize(element, { width: 50 });
 
     assert
       .spy(this.onResize)
@@ -48,8 +41,7 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 100, width: 50 }) })]);
 
     this.onResize.resetHistory();
-    element.style.height = '50px';
-    await timeout();
+    await setSize(element, { height: 50 });
 
     assert
       .spy(this.onResize)
@@ -58,8 +50,7 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 50, width: 50 }) })]);
 
     this.onResize.resetHistory();
-    element.style.width = '50px';
-    await timeout();
+    await setSize(element, { width: 50 });
 
     assert.spy(this.onResize).notCalled('did not call onResize when size is not changed');
   });
@@ -78,14 +69,12 @@ module('Integration | Modifier | on-resize', function (hooks) {
     `);
 
     const element = find('[data-test]');
-    await timeout();
+    await delay();
 
     assert.spy(this.onResize).called();
 
     this.onResize.resetHistory();
-    element.style.display = 'none';
-
-    await timeout();
+    await setStyle(element, 'display', 'none');
 
     assert
       .spy(this.onResize)
@@ -114,15 +103,14 @@ module('Integration | Modifier | on-resize', function (hooks) {
     `);
 
     const element = find('[data-test]');
-    await timeout();
+    await delay();
 
     assert.spy(callback1).calledOnce();
     assert.spy(callback2).calledOnce();
 
     callback1.resetHistory();
     callback2.resetHistory();
-    element.style.width = '50px';
-    await timeout();
+    await setSize(element, { width: 50 });
 
     assert.spy(callback1).calledOnce();
     assert.spy(callback2).calledOnce();
@@ -130,8 +118,7 @@ module('Integration | Modifier | on-resize', function (hooks) {
     this.set('onResize1', callback3);
     callback1.resetHistory();
     callback2.resetHistory();
-    element.style.width = '20px';
-    await timeout();
+    await setSize(element, { width: 20 });
 
     assert.spy(callback1).notCalled();
     assert.spy(callback2).calledOnce();
@@ -155,20 +142,19 @@ module('Integration | Modifier | on-resize', function (hooks) {
     `);
 
     const element = find('[data-test]');
-    await timeout();
+    await delay();
 
     assert.spy(callback1).calledOnce();
     assert.spy(callback2).notCalled();
 
     callback1.resetHistory();
     this.set('onResize', callback2);
-    await timeout();
+    await delay();
 
     assert.spy(callback1).notCalled();
     assert.spy(callback2).notCalled();
 
-    element.style.width = '50px';
-    await timeout();
+    await setSize(element, { width: 50 });
 
     assert.spy(callback1).notCalled();
     assert.spy(callback2).calledOnce();
