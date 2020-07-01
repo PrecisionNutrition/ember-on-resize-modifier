@@ -4478,7 +4478,7 @@ ember-cli-htmlbars@^3.0.1:
     json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
-ember-cli-htmlbars@^4.2.2, ember-cli-htmlbars@^4.2.3, ember-cli-htmlbars@^4.3.1:
+ember-cli-htmlbars@^4.2.2, ember-cli-htmlbars@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.3.1.tgz#4af8adc21ab3c4953f768956b7f7d207782cb175"
   integrity sha512-CW6AY/yzjeVqoRtItOKj3hcYzc5dWPRETmeCzr2Iqjt5vxiVtpl0z5VTqHqIlT5fsFx6sGWBQXNHIe+ivYsxXQ==
@@ -4829,13 +4829,13 @@ ember-qunit@^4.6.0:
     ember-cli-test-loader "^2.2.0"
     qunit "^2.9.3"
 
-ember-resize-observer-service@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/ember-resize-observer-service/-/ember-resize-observer-service-0.0.1.tgz#80b454e287c035f6c23e1ab0870774744c5ea5dc"
-  integrity sha512-kYPlDZJATUBVMqA6S7tiHy8Y0XBo6YWKD6ZVhom3eX1hFW+bKCrT9r6eYnOeXDInfqTLgksyqLhB80JyeVLr/A==
+ember-resize-observer-service@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ember-resize-observer-service/-/ember-resize-observer-service-0.1.0.tgz#d38fd409ee2f285b865de2c2c620cfd1d42b6f34"
+  integrity sha512-9CNsh1+ExLYfdVlgIZS9MdWglfI180KWezlRRqemtH4KNVCP60BVAQV6F8clDjfBpnrZbGWKkZ0kZccxpft3kQ==
   dependencies:
-    ember-cli-babel "^7.18.0"
-    ember-cli-htmlbars "^4.2.3"
+    ember-cli-babel "^7.20.5"
+    ember-cli-htmlbars "^5.1.2"
 
 ember-resolver@^8.0.0:
   version "8.0.0"
