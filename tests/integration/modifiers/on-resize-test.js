@@ -29,7 +29,9 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .calledOnce('called onResize on insert')
       .calledWithExactly([sinon.match.instanceOf(ResizeObserverEntry)])
       .calledWithExactly([sinon.match({ target: element })])
-      .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 100, width: 100 }) })]);
+      .calledWithExactly([
+        sinon.match({ contentRect: sinon.match({ height: 100, width: 100 }) }),
+      ]);
 
     this.onResize.resetHistory();
     await setSize(element, { width: 50 });
@@ -38,7 +40,9 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .spy(this.onResize)
       .calledOnce('called onResize on width change')
       .calledWithExactly([sinon.match({ target: element })])
-      .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 100, width: 50 }) })]);
+      .calledWithExactly([
+        sinon.match({ contentRect: sinon.match({ height: 100, width: 50 }) }),
+      ]);
 
     this.onResize.resetHistory();
     await setSize(element, { height: 50 });
@@ -47,7 +51,9 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .spy(this.onResize)
       .calledOnce('called onResize on height change')
       .calledWithExactly([sinon.match({ target: element })])
-      .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 50, width: 50 }) })]);
+      .calledWithExactly([
+        sinon.match({ contentRect: sinon.match({ height: 50, width: 50 }) }),
+      ]);
 
     this.onResize.resetHistory();
     await setSize(element, { width: 50 });
@@ -80,7 +86,9 @@ module('Integration | Modifier | on-resize', function (hooks) {
       .spy(this.onResize)
       .calledOnce()
       .calledWithExactly([sinon.match({ target: element })])
-      .calledWithExactly([sinon.match({ contentRect: sinon.match({ height: 0, width: 0 }) })]);
+      .calledWithExactly([
+        sinon.match({ contentRect: sinon.match({ height: 0, width: 0 }) }),
+      ]);
   });
 
   test('using multiple modifiers for the same element', async function (assert) {
@@ -200,5 +208,18 @@ module('Integration | Modifier | on-resize', function (hooks) {
         </div>
       `);
     });
+  });
+
+  test('prevents ResizeObserver loop limit related errors', async function (assert) {
+    assert.expect(0);
+    this.onResize = () => this.set('showText', true);
+
+    await render(hbs`
+      <div {{on-resize this.onResize}}>
+        {{if this.showText "Trigger ResizeObserver again"}}
+      </div>
+    `);
+
+    delay();
   });
 });
