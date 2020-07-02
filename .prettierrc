@@ -24,7 +24,7 @@
     {
       "files": "tests/**/*-test.js",
       "options": {
-        "printWidth": 100
+        "printWidth": 90
       }
     }
   ]
