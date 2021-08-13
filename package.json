@@ -25,6 +25,16 @@
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css}": "prettier --write",
+    "*.js": "eslint --fix",
+    "*.hbs": "ember-template-lint"
+  },
   "dependencies": {
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
@@ -72,26 +82,36 @@
     "prettier": "^2.3.0",
     "qunit": "^2.15.0",
     "qunit-dom": "^1.6.0",
-    "qunit-sinon-assertions": "^0.0.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,css}": "prettier --write",
-    "*.js": "eslint --fix",
-    "*.hbs": "ember-template-lint"
+    "qunit-sinon-assertions": "^0.0.3",
+    "release-it": "^14.2.1",
+    "release-it-lerna-changelog": "^3.1.0"
   },
   "engines": {
     "node": "10.* || >= 12"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   },
   "ember": {
     "edition": "octane"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "release-it": {
+    "plugins": {
+      "release-it-lerna-changelog": {
+        "infile": "CHANGELOG.md",
+        "launchEditor": true
+      }
+    },
+    "git": {
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_AUTH"
+    }
   },
   "volta": {
     "node": "12.18.0",
